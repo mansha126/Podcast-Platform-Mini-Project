@@ -16,8 +16,6 @@ router.post('/add', (req, res) => {
     //Reading client data from request body
     console.log(req.body);
 
-    // res.send('response from user router')
-
     //Create operation to save data in db
     new Model(req.body).save()
         .then((result) => {
