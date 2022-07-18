@@ -4,5 +4,5 @@ const myschema = new Schema({
     password: String,
     email: String,
 });
-//user tell that in databse create a connection nname in database
+
 module.exports = model('usercollection', myschema);
