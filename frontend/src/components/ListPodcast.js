@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ListPodcast = () => {
@@ -36,6 +37,7 @@ const ListPodcast = () => {
                   <p className="card-text">
                     <small className="text-muted">Uploaded By:{uploadedBy}</small>
                   </p>
+              <Link to={'/view/'+_id} className="btn btn-primary">View Podcast</Link>
                 </div>
               </div>
             </div>

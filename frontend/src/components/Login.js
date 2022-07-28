@@ -21,7 +21,7 @@ const Login = () => {
       body: JSON.stringify(formdata),
       headers: { 'Content-Type': 'application/json' }
     })
-
+    console.log(response.status);
 
     if (response.status === 200) {
       Swal.fire({
@@ -29,7 +29,12 @@ const Login = () => {
         title: "Success",
         text: "Login success!!👍",
       
-      });navigate("/");
+      });
+      response.json().then(data => {
+        console.log(data);
+        navigate('/listPodcast');
+        sessionStorage.setItem("user", JSON.stringify(data));
+      })
     } else if (response.status === 400) {
       Swal.fire({
         icon: "error",

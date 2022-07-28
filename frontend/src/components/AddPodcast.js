@@ -4,17 +4,21 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 const AddPodcast = () => {
+  
+
+  const [selFile, setSelFile] = useState("");
+  const [selThumbnail, setSelThumbnail] = useState("");
+
+  const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
+
+
   const podcastForm = {
     title: "",
     description: "",
     thumbnail: "",
     file: "",
-    uploadedBy: "",
+    uploadedBy: currentUser._id,
   };
-
-  const [selFile, setSelFile] = useState("");
-  const [selThumbnail, setSelThumbnail] = useState("");
-
   const podcastSubmit = async (formdata) => {
     console.log(formdata);
     const response = await fetch("http://localhost:5000/podcast/add", {

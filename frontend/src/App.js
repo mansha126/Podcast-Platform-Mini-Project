@@ -18,12 +18,13 @@ function App() {
       <Header />
 
       <Routes>
-        <Route element={<Home></Home>} path="/" />
+        <Route element={<Home></Home>} path="/"/>
         <Route element={<Login></Login>} path="login" />
         <Route element={<Signup></Signup>} path="signup" />
         <Route element={<AddPodcast></AddPodcast>} path="addPodcast" />
         <Route element={<ListPodcast></ListPodcast>} path="listPodcast" />
         <Route element={<UpdateUser></UpdateUser>} path="updateUser" />
+        <Route element={<ViewPodcast />} path="view/:id" />
         <Route element={<Trial></Trial>} path="trial" />
         <Route element={<ViewPodcast />} path="view" />
       </Routes>
