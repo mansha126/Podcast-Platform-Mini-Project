@@ -60,10 +60,10 @@ const Signup = () => {
   });
 
   return (
-    <div className="signup "
+    <div className="signup bg-dark"
    >
-      <div className="container col-7" style={{ minHeight: "100vh"}}>
-        <div className="card "style={{background: "linear-gradient(to right,#ffffff,#9d57ea)", marginTop:"10%"}}>
+      <div className="container col-7" style={{ minHeight: "100vh", paddingTop:"10%"}}>
+        <div className="card "style={{background: "linear-gradient(to right,#ffffff,#9d57ea)"}}>
          
           <div className="row ">
             <div className="col-md">
