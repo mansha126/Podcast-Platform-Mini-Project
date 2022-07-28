@@ -1,8 +1,19 @@
-const express=require('express')
-const userRouter=require('./routers/userRouter')
+const express = require('express')
 const app=express()
-const port = 5000;
-app.use('/user',userRouter)
+const userRouter = require('./routers/userRouter')
+const podcastRouter = require('./routers/podcastRouter')
+const util=require('./routers/util')
+
+const cors = require('cors')
+app.use(cors({ origin: 'http://localhost:3000' }))
+
+app.use(express.json())
+
+const port = process.env.PORT||5000;
+app.use('/user', userRouter)
+app.use('/podcast', podcastRouter)
+app.use('/util',util)
+
 app.get('/', (req, res) => {
     res.send('response from userRouter')
 })
