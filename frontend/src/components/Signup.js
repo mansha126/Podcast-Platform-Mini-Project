@@ -17,7 +17,7 @@ import {
   VisibilityOff,
   AccountCircle,
 } from "@mui/icons-material";
-
+import "./Signup.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Signup = () => {
         title: "Success",
         text: "Registered successfully!!",
       });
-      navigate("/home");
+      navigate("/listPodcast");
     } else {
       console.log(response.status);
       console.log("something went wrong");
@@ -76,14 +76,14 @@ const Signup = () => {
   });
 
   return (
-    <div className="signup bg-dark">
+    <div className="signup">
       <div
         className="container col-8"
         style={{ minHeight: "100vh", paddingTop: "3%" }}
       >
         <div
           className="card"
-          style={{ background: "linear-gradient(to right,#ffffff,#9d57ea)" }}
+          style={{ background: "linear-gradient(to right,#ffffff,#e5d3f9)" }}
         >
           <div className="row ">
             <div className="col-md">
@@ -91,7 +91,7 @@ const Signup = () => {
                 className="img-fluid"
                 src="https://purple.ai/wp-content/uploads/2020/04/guest-wifi-featured.png"
                 alt=""
-                style={{ minHeight: "20rem", height: "100%" }}
+                style={{ minHeight: "20rem", height: "100%"}}
               />
               {/* <Avatar
         sx={{ bgcolor: deepOrange[500] }}
@@ -104,13 +104,13 @@ const Signup = () => {
                 <div
                   className="card-body"
                   style={{
-                    background: "linear-gradient(to right,#ffffff,#9d57ea)",
+                    background: "linear-gradient(to right,#ffffff,#e5d3f9)",
                   }}
                 >
                   <h1 style={{ textAlign: "center", color: "purple" }}>
                     Signup Here
                   </h1>
-                  <hr className="mb-5" />
+                  <hr className="mb-3" />
 
                   <Formik
                     initialValues={userForm}
@@ -129,7 +129,7 @@ const Signup = () => {
                           label="Username"
                           color="secondary"
                           variant="standard"
-                          className="w-100 mb-4"
+                          className="w-100 mb-3"
                           id="username"
                           InputProps={{
                             endAdornment: (
@@ -148,7 +148,7 @@ const Signup = () => {
                           label="Email"
                           color="secondary"
                           variant="standard"
-                          className="w-100 mb-4"
+                          className="w-100 mb-3"
                           id="email"
                           InputProps={{
                             endAdornment: (
@@ -166,7 +166,7 @@ const Signup = () => {
                           label="Password"
                           color="secondary"
                           variant="standard"
-                          className="w-100 mb-4"
+                          className="w-100 mb-3"
                           id="password"
                           type={showPassword ? "text" : "password"}
                           InputProps={{
@@ -192,7 +192,7 @@ const Signup = () => {
                           error={Boolean(errors.password && touched.password)}
                         />
                         <TextField
-                      className="w-100 mb-4"
+                      className="w-100 mb-3"
                       placeholder="Re-enterPassword"
                       label="Confirm Password"
                           type="password"

@@ -1,5 +1,8 @@
+import { IconButton, InputBase, Paper } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import SearchIcon from '@mui/icons-material/Search';
+
 
 const Header = () => {
   return (
@@ -69,28 +72,27 @@ const Header = () => {
                   ListPodcast
                 </NavLink>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink className="nav-link text-white" to="/view">
                   ViewPodcast
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
 
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <span
-                class="input-group-text border-0"
-                style={{ color: "white" }}
-                id="search-addon"
-              >
-                <i class="fas fa-search"></i>
-              </span>
-            </form>
+            <Paper
+      component="form"
+      sx={{ p: '0 3px', display: 'flex', alignItems: 'center', width: 350}}
+    >
+      
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="Enter Podcast to Search"
+        inputProps={{ 'aria-label': 'Enter Podcast to Search' }}
+      />
+      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+        <SearchIcon />
+      </IconButton>
+    </Paper>
           </div>
         </div>
       </nav>

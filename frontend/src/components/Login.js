@@ -1,5 +1,12 @@
 import { EmailOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
-import { Button, Checkbox, FormControlLabel, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -42,7 +49,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="login bg-dark">
+    <div className="login">
       <div
         className="container col-md-4 col-sm-6"
         style={{ minHeight: "100vh", paddingTop: "5%" }}
@@ -50,7 +57,7 @@ const Login = () => {
         <div className="card">
           <div
             className="card-body"
-            style={{ background: "linear-gradient(to right,#ffffff,#9d57ea)" }}
+            style={{ background: "linear-gradient(to right,#ffffff,#e5d3f9)" }}
           >
             <h1 style={{ color: "purple", textAlign: "center" }}>Sign In</h1>
             <hr className="mb-5" />
@@ -96,12 +103,12 @@ const Login = () => {
                     }}
                   />
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                  <FormControlLabel
-          value="end"
-          control={<Checkbox color="secondary"/>}
-          label="Remember me"
-          labelPlacement="end"
-        />
+                    <FormControlLabel
+                      value="end"
+                      control={<Checkbox color="secondary" />}
+                      label="Remember me"
+                      labelPlacement="end"
+                    />
                     <NavLink to="#!" className="text-body">
                       Forgot password?
                     </NavLink>
