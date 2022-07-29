@@ -74,7 +74,7 @@ const AddPodcast = () => {
 
   return (
     <div className="addpodcast bg-dark">
-      <div className="container col-md-6" style={{ minHeight: "100vh",paddingTop: "5%" }}>
+      <div className="container col-md-6" style={{ minHeight: "100vh", paddingTop: "5%" }}>
         <div className="card ">
           <div
             className="card-body "
