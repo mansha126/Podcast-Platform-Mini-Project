@@ -11,6 +11,7 @@ import UpdateUser from "./components/UpdateUser";
 import Footer from "./components/Footer";
 import Trial from "./components/Trial";
 import ViewPodcast from "./components/ViewPodcast";
+import Authorisor from "./components/Auth";
 
 function App() {
   return (
@@ -21,7 +22,11 @@ function App() {
         <Route element={<Home></Home>} path="/"/>
         <Route element={<Login></Login>} path="login" />
         <Route element={<Signup></Signup>} path="signup" />
-        <Route element={<AddPodcast></AddPodcast>} path="addPodcast" />
+        <Route element={
+          <Authorisor>
+            <AddPodcast></AddPodcast>
+          </Authorisor>
+        } path="addPodcast" />
         <Route element={<ListPodcast></ListPodcast>} path="listPodcast" />
         <Route element={<UpdateUser></UpdateUser>} path="updateUser" />
         <Route element={<ViewPodcast />} path="view/:id" />
