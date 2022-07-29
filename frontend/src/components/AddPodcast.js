@@ -17,7 +17,7 @@ const AddPodcast = () => {
     description: "",
     thumbnail: "",
     file: "",
-    uploadedBy: currentUser._id,
+    uploadedBy: currentUser.username,
   };
   const podcastSubmit = async (formdata) => {
     console.log(formdata);
@@ -73,9 +73,9 @@ const AddPodcast = () => {
   };
 
   return (
-    <div className="addpodcast">
-      <div className="container col-md-6" style={{ minHeight: "100vh" }}>
-        <div className="card " style={{ marginTop: "10%" }}>
+    <div className="addpodcast bg-dark">
+      <div className="container col-md-6" style={{ minHeight: "100vh",paddingTop: "5%" }}>
+        <div className="card ">
           <div
             className="card-body "
             style={{ background: "linear-gradient(to right,#ffffff,#9d57ea)" }}
@@ -89,39 +89,28 @@ const AddPodcast = () => {
                 <form onSubmit={handleSubmit}>
                   <TextField
                     label="Title"
+                    color="secondary"
                     variant="outlined"
                     className="w-100 mb-4"
                     id="title"
                     onChange={handleChange}
                     value={values.title}
+                    
                   />
                   <TextField
                     label="Description"
+                    color="secondary"
                     variant="outlined"
                     className="w-100 mb-4"
                     id="description"
                     onChange={handleChange}
                     value={values.description}
+                    multiline
                   />
-                  <TextField
-                    type="url"
-                    label="Thumbnail"
-                    variant="outlined"
-                    className="w-100 mb-4"
-                    id="thumbnail"
-                    onChange={handleChange}
-                    value={values.thumbnail}
-                  />
-                  <TextField
-                    label="File"
-                    variant="outlined"
-                    className="w-100 mb-4"
-                    id="file"
-                    onChange={handleChange}
-                    value={values.file}
-                  />
+                  
                   <TextField
                     label="UploadedBy"
+                    color="secondary"
                     variant="outlined"
                     className="w-100 mb-4"
                     id="uploadedBy"
@@ -130,12 +119,12 @@ const AddPodcast = () => {
                   />
 
                   <label>Upload Thumb</label>
-                  <input onChange={uploadThumbnail} type="file" />
+                  <input onChange={uploadThumbnail} type="file" /><hr/>
 
                   <label>Upload File</label>
                   <input onChange={uploadFile} type="file" />
 
-                  <Button type="submit" variant="contained" fullWidth>
+                  <Button type="submit" variant="contained" fullWidth >
                     Submit
                   </Button>
                 </form>

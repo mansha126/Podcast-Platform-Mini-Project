@@ -3,6 +3,7 @@ const myschema = new Schema({
     username: String,
     password: String,
     email: String,
+    confirmPassword: String,
     avatar: String,
 });
 

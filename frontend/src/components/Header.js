@@ -23,7 +23,7 @@ const Header = () => {
           <a
             className="navbar-brand"
             to="#"
-            style={{ fontFamily: "Satisfy", color: "white" }}
+            style={{ fontFamily: "Cursive", color: "white" }}
           >
             PODCASTER
           </a>
@@ -40,87 +40,57 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
+              <li className="nav-item ">
                 <NavLink
-                  className="nav-link active"
+                  className="nav-link active text-white"
                   aria-current="page"
                   to="/"
-                  style={{ color: "white" }}
                 >
                   Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/login"
-                  style={{ color: "white" }}
-                >
+                <NavLink className="nav-link text-white" to="/login">
                   Login
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/signup"
-                  style={{ color: "white" }}
-                >
+                <NavLink className="nav-link text-white" to="/signup">
                   Signup
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/addPodcast"
-                  style={{ color: "white" }}
-                >
+                <NavLink className="nav-link text-white" to="/addPodcast">
                   AddPodcast
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/listPodcast"
-                  style={{ color: "white" }}
-                >
+                <NavLink className="nav-link text-white" to="/listPodcast">
                   ListPodcast
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/view"
-                  style={{ color: "white" }}
-                >
+                <NavLink className="nav-link text-white" to="/view">
                   ViewPodcast
                 </NavLink>
               </li>
-              {/* <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" to="#">Action</a></li>
-            <li><a className="dropdown-item" to="#">Another action</a></li>
-            <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" to="#">Something else here</a></li>
-          </ul>
-        </li> */}
-              {/* <li className="nav-item">
-                <a className="nav-link disabled">Disabled</a>
-              </li> */}
             </ul>
-            {/* <form className="d-flex" role="search">
+
+            <form className="d-flex" role="search">
               <input
                 className="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
-              /> */}
-            <button className="btnn btn-outline-success" type="submit">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            {/* </form> */}
+              />
+              <span
+                class="input-group-text border-0"
+                style={{ color: "white" }}
+                id="search-addon"
+              >
+                <i class="fas fa-search"></i>
+              </span>
+            </form>
           </div>
         </div>
       </nav>

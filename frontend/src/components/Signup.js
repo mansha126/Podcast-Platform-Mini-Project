@@ -1,10 +1,22 @@
 import React, { useState } from "react";
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
 import { Formik } from "formik";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useNavigate } from "react-router-dom";
-import { EmailOutlined, Margin, Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  EmailOutlined,
+  Visibility,
+  VisibilityOff,
+  AccountCircle,
+} from "@mui/icons-material";
 
 
 const Signup = () => {
@@ -14,6 +26,7 @@ const Signup = () => {
     username: "",
     password: "",
     email: "",
+    confirmPassword: "",
     avatar: "",
   };
 
@@ -30,7 +43,7 @@ const Signup = () => {
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: "Registered successfully!!✌",
+        text: "Registered successfully!!",
       });
       navigate("/home");
     } else {
@@ -46,36 +59,48 @@ const Signup = () => {
 
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
-      .min(2, "Too Short username!")
-      .max(22, "Too Long username!")
-      .required("Required"),
+      .min(2, "Too Short!")
+      .max(22, "Too Long!")
+      .required("UserName is Required"),
 
-    email: Yup.string().email("Invalid email").required("Required"),
+    email: Yup.string().email("Invalid email").required("Email is Required"),
     password: Yup.string()
-      .required("Required")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-      ),
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+      )
+      .required("Password is Required"),
+      confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Password Confirmation is Required"),
   });
 
   return (
-    <div className="signup bg-dark"
-   >
-      <div className="container col-7" style={{ minHeight: "100vh", paddingTop:"10%"}}>
-        <div className="card "style={{background: "linear-gradient(to right,#ffffff,#9d57ea)"}}>
-         
+    <div className="signup bg-dark">
+      <div
+        className="container col-8"
+        style={{ minHeight: "100vh", paddingTop: "3%" }}
+      >
+        <div
+          className="card"
+          style={{ background: "linear-gradient(to right,#ffffff,#9d57ea)" }}
+        >
           <div className="row ">
             <div className="col-md">
               <img
                 className="img-fluid"
                 src="https://purple.ai/wp-content/uploads/2020/04/guest-wifi-featured.png"
                 alt=""
-              
+                style={{ minHeight: "20rem", height: "100%" }}
               />
+              {/* <Avatar
+        sx={{ bgcolor: deepOrange[500] }}
+        alt="Remy Sharp"
+        src="/broken-image.jpg"
+      /> */}
             </div>
-            <div className="col-md">
-              {/* <div className="card "> */}
+            <div className="col-md mx-auto">
+              <div className="card ">
                 <div
                   className="card-body"
                   style={{
@@ -102,16 +127,26 @@ const Signup = () => {
                       <form onSubmit={handleSubmit}>
                         <TextField
                           label="Username"
+                          color="secondary"
                           variant="standard"
                           className="w-100 mb-4"
                           id="username"
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <AccountCircle />
+                              </InputAdornment>
+                            ),
+                          }}
                           onChange={handleChange}
                           value={values.username}
                           helperText={errors.username}
                           error={Boolean(errors.username && touched.username)}
                         />
+
                         <TextField
                           label="Email"
+                          color="secondary"
                           variant="standard"
                           className="w-100 mb-4"
                           id="email"
@@ -129,6 +164,7 @@ const Signup = () => {
                         />
                         <TextField
                           label="Password"
+                          color="secondary"
                           variant="standard"
                           className="w-100 mb-4"
                           id="password"
@@ -155,10 +191,71 @@ const Signup = () => {
                           helperText={touched.password ? errors.password : ""}
                           error={Boolean(errors.password && touched.password)}
                         />
-
-                        <Button type="submit" variant="contained" fullWidth className="Btn">
-                          Submit
+                        <TextField
+                      className="w-100 mb-4"
+                      placeholder="Re-enterPassword"
+                      label="Confirm Password"
+                          type="password"
+                          color="secondary"
+                      variant="standard"
+                      id="confirmPassword"
+                      onChange={handleChange}
+                      value={values.confirmPassword}
+                      error={errors.confirmPassword}
+                      helperText={Boolean(errors.confirmPassword)}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <LockOpenIcon
+                              sx={{ color: "active.active", mr: 1, my: 0.5 }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          fullWidth
+                          style={{ backgroundColor: "purple" }}
+                        >
+                          Sign Up
                         </Button>
+                        <center>
+                          <h6 className="m-3">
+                            Already have an account.{" "}
+                            <a href="/login">Sign In</a>
+                          </h6>
+                        </center>
+                        <div className="d-flex justify-content-center align-items-center mb-1">
+                          <h6>Or Signup with</h6>
+                        </div>
+
+                        <div className="d-flex justify-content-center">
+                          <a
+                            className="btn btn-outline-light btn-floating m-1"
+                            href="#!"
+                            role="button"
+                          >
+                            <i className="fab fa-facebook-f"></i>
+                          </a>
+
+                          <a
+                            className="btn btn-outline-light btn-floating m-1"
+                            href="#!"
+                            role="button"
+                          >
+                            <i className="fab fa-google"></i>
+                          </a>
+
+                          <a
+                            className="btn btn-outline-light btn-floating m-1"
+                            href="#!"
+                            role="button"
+                          >
+                            <i className="fab fa-linkedin-in"></i>
+                          </a>
+                        </div>
                       </form>
                     )}
                   </Formik>
@@ -168,7 +265,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-    // </div>
+    </div>
   );
 };
 
