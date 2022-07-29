@@ -183,3 +183,43 @@ const Trial = () => {
 };
 
 export default Trial;
+
+// const displayUsers = () => {
+//   return listArray.map(
+//     ({ _id, title, description, thumbnail, file, uploadedBy }) => (
+//       <div className="col-md-6">
+//         <div className="card mb-3" key={_id}>
+//           <div className="row g-0">
+//             <div className="col-md-4">
+//               <img
+//                 src={thumbnail}
+//                 alt=""
+//                 className="img-fluid rounded-start" style={{height:"100%"}}
+//               />
+//             </div>
+//             <div className="col-md-6" >
+//               <div className="card-body">
+//                 <h4 className="card-title" style={{color:"purple"}}>Title:{title}</h4>
+//                 <h5 className="card-text"style={{color:"purple"}}>Description:{description}</h5>
+//                 <p className="card-text"style={{color:"purple"}}>File:{file}</p>
+//                 <p className="card-text">
+//                   <small className="text-muted">Uploaded By:{uploadedBy}</small>
+//                 </p>
+//             <Link to={'/view/'+_id} className="btn btn-primary">View Podcast</Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   );
+// };
+// return (
+//   <div>
+//     <h1 style={{color:"#e12b5f"}}>ListPodcast</h1>
+//     <div className="card mb-3">
+//       <div className="row">{displayUsers()}</div>
+//     </div>
+//   </div>
+// );
+// };

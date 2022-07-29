@@ -42,7 +42,7 @@ router.get('/getbyid/:podcastid', (req, res) => {
 })
 
 router.delete('/delete/:podcastid', (req, res) => {
-    Model.findByIdAndDelete(req.params.userid)
+    Model.findByIdAndDelete(req.params.podcastid)
     .then((result) => {
         res.json(result);
     }).catch((err) => {
@@ -51,7 +51,7 @@ router.delete('/delete/:podcastid', (req, res) => {
     });
 })
 router.put('/update/:podcastid', (req,res) => {
-    Model.findByIdAndUpdate(req.params.userid,req.body,{new:true})
+    Model.findByIdAndUpdate(req.params.podcastid,req.body,{new:true})
     .then((result) => {
         res.json(result);
     }).catch((err) => {

@@ -13,11 +13,26 @@ const ListPodcast = () => {
     setListArray(data);
   };
 
+  const deletePodcast = async (id) => {
+    console.log(id);
+    const response = await fetch("http://localhost:5000/podcast/delete/" + id, {
+      method: "DELETE",
+    });
+    if (response.status === 200) {
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Podcast Deleted successfully",
+      });
+      getDataFromBackend();
+    }
+  };
+
   useEffect(() => {
     getDataFromBackend();
   }, []);
 
-  const displayUsers = () => {
+  const displayPodcasts = () => {
     return listArray.map(
       ({ _id, title, description, thumbnail, file, uploadedBy }) => (
         <div className="col-md-6">
@@ -48,12 +63,14 @@ const ListPodcast = () => {
     );
   };
   return (
-    <div>
-      <h1 style={{color:"#e12b5f"}}>ListPodcast</h1>
-      <div className="card mb-3">
-        <div className="row">{displayUsers()}</div>
+    
+      <div className="container-fluid bg-dark" style={{minHeight:"100vh"}}>
+        <h1 className="text-center text-white">ListPodcast</h1>
+        <div className="card">
+          <div className="row text-center">{displayPodcasts()}</div>
+        </div>
       </div>
-    </div>
+    
   );
 };
 

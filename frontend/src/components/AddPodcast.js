@@ -73,39 +73,48 @@ const AddPodcast = () => {
   }
 
   return (
-    <div className="addpodcast">
-      <div className="container col-md-6" style={{ minHeight: "100vh" }}>
-        <div className="card " style={{ marginTop: "10%" }}>
-          <div className="card-body " style={{ background: "linear-gradient(to right,#ffffff,#9d57ea)" }}>
-            <h1 style={{ color: "purple", textAlign: "center" }}>Add Podcast</h1>
+    <div className="addpodcast bg-dark">
+      <div className="container col-md-6" style={{ minHeight: "100vh",paddingTop: "5%" }}>
+        <div className="card ">
+          <div
+            className="card-body "
+            style={{ background: "linear-gradient(to right,#ffffff,#9d57ea)" }}
+          >
+            <h1 style={{ color: "purple", textAlign: "center" }}>
+              Add Podcast
+            </h1>
 
             <Formik initialValues={podcastForm} onSubmit={podcastSubmit}>
               {({ values, handleChange, handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
                   <TextField
                     label="Title"
+                    color="secondary"
                     variant="outlined"
                     className="w-100 mb-4"
                     id="title"
                     onChange={handleChange}
                     value={values.title}
+                    
                   />
                   <TextField
                     label="Description"
+                    color="secondary"
                     variant="outlined"
                     className="w-100 mb-4"
                     id="description"
                     onChange={handleChange}
                     value={values.description}
+                    multiline
                   />
 
                   <label>Upload Thumb</label>
-                  <input onChange={uploadThumbnail} type="file" />
+                  <input onChange={uploadThumbnail} type="file" /><hr/>
 
                   <label>Upload File</label>
                   <input onChange={uploadFile} type="file" />
 
-                  <Button type="submit" variant="contained" fullWidth>
+                  <Button type="submit" variant="contained" fullWidth >
                     Submit
                   </Button>
                 </form>

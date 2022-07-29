@@ -12,7 +12,9 @@ app.use(express.json())
 const port = process.env.PORT||5000;
 app.use('/user', userRouter)
 app.use('/podcast', podcastRouter)
-app.use('/util',util)
+app.use('/util', util)
+
+app.use(express.static('./static/uploads'))
 
 app.use(express.static('./static/uploads'));
 
