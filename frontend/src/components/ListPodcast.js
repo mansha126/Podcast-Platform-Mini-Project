@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const ListPodcast = () => {
   const [listArray, setListArray] = useState([]);
+  const url  = 'http://localhost:5000';
 
   const getDataFromBackend = async () => {
     const response = await fetch("http://localhost:5000/podcast/getall");
@@ -24,7 +25,7 @@ const ListPodcast = () => {
             <div className="row g-0">
               <div className="col-md-4">
                 <img
-                  src={thumbnail}
+                  src={url+'/'+thumbnail}
                   alt=""
                   className="img-fluid rounded-start" style={{height:"100%"}}
                 />
@@ -37,7 +38,7 @@ const ListPodcast = () => {
                   <p className="card-text">
                     <small className="text-muted">Uploaded By:{uploadedBy}</small>
                   </p>
-              <Link to={'/view/'+_id} className="btn btn-primary">View Podcast</Link>
+                  <Link to={'/view/'+_id} className="btn btn-primary">View Podcast</Link>
                 </div>
               </div>
             </div>

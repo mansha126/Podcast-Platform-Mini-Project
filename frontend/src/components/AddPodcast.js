@@ -18,6 +18,8 @@ const AddPodcast = () => {
   }
   
   const podcastSubmit = async (formdata) => {
+    formdata.thumbnail = selThumbnail;
+    formdata.file = selFile;
     console.log(formdata)
     const response = await fetch("http://localhost:5000/podcast/add", {
       method: "POST",
@@ -95,24 +97,6 @@ const AddPodcast = () => {
                     id="description"
                     onChange={handleChange}
                     value={values.description}
-                  />
-                  <TextField
-                    type="url"
-                    label="Thumbnail"
-                    variant="outlined"
-                    className="w-100 mb-4"
-                    id="thumbnail"
-                    onChange={handleChange}
-                    value={values.thumbnail}
-                  />
-                  <TextField label="File" variant="outlined" className="w-100 mb-4" id="file" onChange={handleChange} value={values.file} />
-                  <TextField
-                    label="UploadedBy"
-                    variant="outlined"
-                    className="w-100 mb-4"
-                    id="uploadedBy"
-                    onChange={handleChange}
-                    value={values.uploadedBy}
                   />
 
                   <label>Upload Thumb</label>

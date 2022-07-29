@@ -31,7 +31,7 @@ const ViewPodcast = () => {
       return <div className="card">
       <div className="row">
         <div className="col">
-          <img src="" alt="" />
+          <img src={url+'/'+podcastData.thumbnail} alt="" />
         </div>
         <div className="col">
           <div className="card-body">
@@ -41,7 +41,7 @@ const ViewPodcast = () => {
             <p className="card-text">
               <small className="text-muted">Uploaded By:</small>
             </p>
-            <ReactAudioPlayer src="" autoPlay controls/>
+            <ReactAudioPlayer src={url+'/'+podcastData.file} autoPlay controls/>
           </div>
         </div>
       </div>
