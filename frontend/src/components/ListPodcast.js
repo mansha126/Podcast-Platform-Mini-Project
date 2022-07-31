@@ -38,7 +38,7 @@ const ListPodcast = () => {
   const displayPodcasts = () => {
     return listArray.map(
       ({ _id, title, description, thumbnail, file, uploadedBy }) => (
-        <div className="col-md-6">
+        <div className="col-md-6" id="carrd" style={{marginBottom:"1%"}}>
           <div className="card mb-3" key={_id}>
             <div className="row">
               <div className="col-md-4">
@@ -52,16 +52,16 @@ const ListPodcast = () => {
               <div className="col-md-8">
                 <div className="card-body">
                   <h4 className="card-title" style={{ color: "purple" }}>
-                    Title:{title}
+                    Title: {title}
                   </h4>
                   <hr />
-                  <p className="card-text">Description:{description}</p>
+                  <em className="card-text">Description:  {description.substring(0,75)}</em>
                   <p className="card-text" style={{ color: "purple" }}>
                     File:{file}
                   </p>
                   <p className="card-text">
                     <small className="text-muted">
-                      Uploaded By:{uploadedBy}
+                      Uploaded By: {uploadedBy}
                     </small>
                   </p>
                   <Link to={"/view/" + _id} className="btn btn-primary">
@@ -76,7 +76,7 @@ const ListPodcast = () => {
     );
   };
   return (
-    <div>
+    <div id="list">
       <header class="text-white text-center" id="head">
         <div class="container">
           <h1 style={{ fontFamily: "Cursive",marginBottom:'2%' }}>List Podcast</h1>
@@ -103,8 +103,8 @@ const ListPodcast = () => {
           </div> */}
         </div>
       </header>
-      <div className="container" id="listpodcast" style={{ minHeight: "100vh",paddingTop:"5%" }}>
-        <div className="card">
+      <div className="container"style={{ minHeight: "100vh",paddingTop:"5%" }}>
+        <div className="">
           <div className="row text-center">{displayPodcasts()}</div>
         </div>
       </div>

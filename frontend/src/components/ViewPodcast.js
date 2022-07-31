@@ -1,7 +1,7 @@
-import { IconButton, InputBase, Paper, Typography } from "@mui/material";
+import { Button, IconButton, InputBase, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import { useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import "./ViewPodcast.css";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -33,7 +33,7 @@ const ViewPodcast = () => {
     if (!loading && podcastData) {
       return (
         <div className="col-md-12">
-          <div className="card mb-3">
+          <div className="card mb-4">
             <div className="row">
               <div className="col-md-4">
                 <img
@@ -63,6 +63,9 @@ const ViewPodcast = () => {
                     autoPlay
                     controls
                   />
+                  <Link to="/listPodcast" className="btn btn-primary">
+                    Back
+                  </Link>
                 </div>
               </div>
             </div>
@@ -73,10 +76,12 @@ const ViewPodcast = () => {
   };
 
   return (
-    <div>
+    <div id="view">
       <header class="bg-secondary text-white text-center" id="headd">
         <div class="container">
-          <h1 style={{ fontFamily: "Cursive",marginBottom:"2%" }}>View Podcast</h1>
+          <h1 style={{ fontFamily: "Cursive", marginBottom: "2%" }}>
+            View Podcast
+          </h1>
 
           <Paper
             component="form"
@@ -94,9 +99,12 @@ const ViewPodcast = () => {
         </div>
       </header>
 
-      <div className="container" id="viewpodcast" style={{ minHeight: "100vh",paddingTop:"5%"}}>
-        <div className="card">
-          <div className="row text-center">{displayPodcastData()}</div>
+      <div
+        className="container"
+        id="viewpodcast"
+        style={{ minHeight: "100vh", paddingTop: "5%" }}
+      >
+          <div className="row text-center">{displayPodcastData()}
         </div>
       </div>
     </div>

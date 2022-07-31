@@ -7,8 +7,8 @@
 .btn{
     cursor: pointer;
     outline: none;
-    margin: 12px 0;
-    padding: 10px 21px;
+    margin: 12px ;
+    padding: 7px 21px;
     border-radius: 10px;
     border: 2px solid purple;
     font-size: 18px;

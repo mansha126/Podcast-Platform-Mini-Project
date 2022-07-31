@@ -1,10 +1,26 @@
 import { IconButton, InputBase, Paper } from "@mui/material";
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
-
+import { AppContext } from "./AppContext";
+import { useContext } from "react";
 
 const Header = () => {
+
+
+  const { loggedIn, setLoggedIn } = useContext(AppContext);
+  
+  const navigate = useNavigate();
+
+  const logout = () => {
+    //1.destroy session value
+    sessionStorage.removeItem('user');
+    //2. set the current user to null
+    setLoggedIn(false);
+    //3.navigate to login page
+    navigate('/authenticate')
+  }
+
   return (
     <div>
       <nav
@@ -42,6 +58,7 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item ">
                 <NavLink
@@ -79,6 +96,7 @@ const Header = () => {
               </li> */}
             </ul>
 
+           
             <Paper
       component="form"
       sx={{ p: '0 3px', display: 'flex', alignItems: 'center', width: 350}}
@@ -92,7 +110,15 @@ const Header = () => {
       <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />
       </IconButton>
-    </Paper>
+            </Paper>
+            {
+              !loggedIn ?
+                <li className="nav">
+                  <NavLink className="btn" to="/login">Login Now</NavLink>
+                </li>:
+                <button onClick={logout} className="btn btn-danger">Logout</button>
+            }
+
           </div>
         </div>
       </nav>

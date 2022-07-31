@@ -104,7 +104,7 @@ const Signup = () => {
                 <div
                   className="card-body"
                   style={{
-                    background: "linear-gradient(to right,#ffffff,#e5d3f9)",
+                    background: "linear-gradient(to right,#ffffff,#e5d3f9)",borderRadius:"7px"
                   }}
                 >
                   <h1 style={{ textAlign: "center", color: "purple" }}>

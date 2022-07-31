@@ -12,9 +12,14 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Login.css";
+import { AppContext } from './AppContext';
+import { useContext } from 'react';
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const { setLoggedIn } = useContext(AppContext)
+
   const [showPassword, setShowPassword] = useState(false);
   const loginForm = {
     email: "",
@@ -35,8 +40,12 @@ const Login = () => {
         title: "Success",
         text: "Login success!!👍",
       });
+
       response.json().then((data) => {
         console.log(data);
+
+        setLoggedIn(true);
+
         navigate("/listPodcast");
         sessionStorage.setItem("user", JSON.stringify(data));
       });
@@ -57,10 +66,10 @@ const Login = () => {
         <div className="card">
           <div
             className="card-body"
-            style={{ background: "linear-gradient(to right,#ffffff,#e5d3f9)" }}
+            style={{ background: "linear-gradient(to right,#ffffff,#e5d3f9" ,borderRadius:"7px" }}
           >
             <h1 style={{ color: "purple", textAlign: "center" }}>Sign In</h1>
-            <hr className="mb-5" />
+            <hr className="mb-4" />
 
             <Formik initialValues={loginForm} onSubmit={loginSubmit}>
               {({ values, handleChange, handleSubmit }) => (
@@ -109,7 +118,7 @@ const Login = () => {
                       label="Remember me"
                       labelPlacement="end"
                     />
-                    <NavLink to="#!" className="text-body">
+                    <NavLink to="/otpform" className="text-body">
                       Forgot password?
                     </NavLink>
                   </div>

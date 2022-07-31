@@ -7,8 +7,9 @@
   background-position: center;
   transition-duration: 1s;
 }
-#viewpodcast{
-  background-image: url(https://thumbs.dreamstime.com/z/seamless-pattern-electronic-appliances-seamless-pattern-electronic-appliances-cover-podcast-interview-blog-232193046.jpg);
+#view{
+  /* background-image: url(https://thumbs.dreamstime.com/z/seamless-pattern-electronic-appliances-seamless-pattern-electronic-appliances-cover-podcast-interview-blog-232193046.jpg); */
+  background-color: #b9b6d5;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
