@@ -52,7 +52,7 @@ const ViewPodcast = () => {
                   <p className="card-text">
                     Description:{podcastData.description}
                   </p>
-                  <p className="card-text">File:{podcastData.file}</p>
+                  {/* <p className="card-text">File:{podcastData.file}</p> */}
                   <p className="card-text">
                     <small className="text-muted">
                       Uploaded By:{podcastData.uploadedBy}
@@ -85,7 +85,8 @@ const ViewPodcast = () => {
 
           <Paper
             component="form"
-            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+            className="mx-auto"
+            sx={{ p: "2px 4px", display: "flex", alignItems: "center",width:"70%" }}
           >
             <InputBase
               sx={{ ml: 1, flex: 1 }}

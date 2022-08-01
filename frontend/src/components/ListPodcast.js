@@ -6,6 +6,21 @@ import "./ListPodcast.css";
 import SearchIcon from "@mui/icons-material/Search";
 
 const ListPodcast = () => {
+  //search filter
+  const [filteredData, setFilteredData] = useState([])
+  const handleFilter = (event) => {
+    const searchWord = event.target.value
+    const newFilter = setListArray.filter((value) => {
+      return value.title.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }  
+  }
+
+
   const [listArray, setListArray] = useState([]);
   const url = "http://localhost:5000";
 
@@ -34,10 +49,9 @@ const ListPodcast = () => {
   useEffect(() => {
     getDataFromBackend();
   }, []);
-
   const displayPodcasts = () => {
     return listArray.map(
-      ({ _id, title, description, thumbnail, file, uploadedBy }) => (
+      ({ _id, title, description, thumbnail, file, uploadedBy } , count=1 ) => (
         <div className="col-md-6" id="carrd" style={{marginBottom:"1%"}}>
           <div className="card mb-3" key={_id}>
             <div className="row">
@@ -52,21 +66,21 @@ const ListPodcast = () => {
               <div className="col-md-8">
                 <div className="card-body">
                   <h4 className="card-title" style={{ color: "purple" }}>
-                    Title: {title}
+                    <h3>Episode {count++}:</h3> {title}
                   </h4>
                   <hr />
-                  <em className="card-text">Description:  {description.substring(0,75)}</em>
-                  <p className="card-text" style={{ color: "purple" }}>
+                  <p className="card-text"><h4>Description:</h4>  {description.substring(0,75)}</p>
+                  {/* <p className="card-text" style={{ color: "purple" }}>
                     File:{file}
-                  </p>
+                  </p> */}
                   <p className="card-text">
                     <small className="text-muted">
                       Uploaded By: {uploadedBy}
                     </small>
                   </p>
                   <Link to={"/view/" + _id} className="btn btn-primary">
-                    View Podcast
-                  </Link>
+                    Play Podcast
+                  <i class="fa-solid fa-play" style={{paddingLeft:"3px"}}></i></Link>
                 </div>
               </div>
             </div>
@@ -79,19 +93,33 @@ const ListPodcast = () => {
     <div id="list">
       <header class="text-white text-center" id="head">
         <div class="container">
-          <h1 style={{ fontFamily: "Cursive",marginBottom:'2%' }}>List Podcast</h1>
+          <h1 style={{ fontFamily: "Cursive", marginBottom: '2%' }}>List Podcast</h1>
+          
           <Paper
             component="form"
-            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+            className="mx-auto"
+            sx={{ p: "2px 4px", display: "flex", alignItems: "center",width:"70%" }}
           >
             <InputBase
               sx={{ ml: 1, flex: 1 }}
-              placeholder="Enter Podcast to Search"
+              placeholder="Enter Podcast to Search" onChange={handleFilter}
               inputProps={{ "aria-label": "Enter Podcast to Search" }}
             />
             <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
+            {filteredData.length !=0 &&(
+              <div className="dataResult">
+                {filteredData.slice(0,15).map((value, key) => {
+                  return (
+                    <a href={value.file} className="dataItem" target="_blank" >
+                      <p>{ value.title}</p>
+                    </a>
+                  )
+                })}
+            </div>
+            )}
+
           </Paper>
           {/* <div class="input-group mt-4">
             <input
