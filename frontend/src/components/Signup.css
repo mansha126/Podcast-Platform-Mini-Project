@@ -1,5 +1,7 @@
 .signup{
-    background-image: url(https://assets.hongkiat.com/uploads/beautiful-minimalist-desktop-wallpapers/4k/preview/01.jpg?3);
+    /* background-image: url(https://assets.hongkiat.com/uploads/beautiful-minimalist-desktop-wallpapers/4k/preview/01.jpg?3); */
+    background-color: #9c90ae;
+
     background-attachment: fixed;
     background-size: cover;
     background-position: center;

@@ -51,11 +51,11 @@ const ListPodcast = () => {
   }, []);
   const displayPodcasts = () => {
     return listArray.map(
-      ({ _id, title, description, thumbnail, file, uploadedBy } , count=1 ) => (
+      ({ _id, title, description, thumbnail, file, uploadedBy } , count ) => (
         <div className="col-md-6" id="carrd" style={{marginBottom:"1%"}}>
           <div className="card mb-3" key={_id}>
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-5">
                 <img
                   src={url + "/" + thumbnail}
                   alt="thumbnail"
@@ -63,10 +63,10 @@ const ListPodcast = () => {
                   style={{ height: "100%" }}
                 />
               </div>
-              <div className="col-md-8">
+              <div className="col-md-6">
                 <div className="card-body">
-                  <h4 className="card-title" style={{ color: "purple" }}>
-                    <h3>Episode {count++}:</h3> {title}
+                  <h4 className="card-title" style={{ color: "purple",fontFamily:"lato"}}>
+                    <h3>Episode {count++}:</h3> <marquee behavior="scroll" direction="left" scrollamount="4.5">{title}</marquee>
                   </h4>
                   <hr />
                   <p className="card-text"><h4>Description:</h4>  {description.substring(0,75)}</p>
@@ -78,9 +78,9 @@ const ListPodcast = () => {
                       Uploaded By: {uploadedBy}
                     </small>
                   </p>
-                  <Link to={"/view/" + _id} className="btn btn-primary">
-                    Play Podcast
-                  <i class="fa-solid fa-play" style={{paddingLeft:"3px"}}></i></Link>
+                  <Link to={"/view/" + _id} className="btn btn-secondary">
+                    Play Now
+                  <i class="fa-solid fa-play" style={{paddingLeft:"9px"}}></i></Link>
                 </div>
               </div>
             </div>

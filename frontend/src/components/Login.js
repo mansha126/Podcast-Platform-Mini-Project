@@ -46,7 +46,7 @@ const Login = () => {
 
         setLoggedIn(true);
 
-        navigate("/listPodcast");
+        navigate("/addPodcast");
         sessionStorage.setItem("user", JSON.stringify(data));
       });
     } else if (response.status === 400) {
@@ -66,7 +66,7 @@ const Login = () => {
         <div className="card">
           <div
             className="card-body"
-            style={{ background: "linear-gradient(to right,#ffffff,#e5d3f9" ,borderRadius:"7px" }}
+            style={{ background: "linear-gradient(to right,#ffffff,#e5d6f7" ,borderRadius:"8px" }}
           >
             <h1 style={{ color: "purple", textAlign: "center" }}>Sign In</h1>
             <hr className="mb-4" />
