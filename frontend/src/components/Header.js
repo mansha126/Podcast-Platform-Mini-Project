@@ -1,25 +1,23 @@
 import { IconButton, InputBase, Paper } from "@mui/material";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 import { AppContext } from "./AppContext";
 import { useContext } from "react";
 
 const Header = () => {
-
-
   const { loggedIn, setLoggedIn } = useContext(AppContext);
-  
+
   const navigate = useNavigate();
 
   const logout = () => {
     //1.destroy session value
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem("user");
     //2. set the current user to null
     setLoggedIn(false);
     //3.navigate to login page
-    navigate('/authenticate')
-  }
+    navigate("/authenticate");
+  };
 
   return (
     <div>
@@ -58,8 +56,10 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul
+              className="navbar-nav me-auto mb-2 mb-lg-0 "
+              style={{ fontSize: "19px" }}
+            >
               <li className="nav-item ">
                 <NavLink
                   className="nav-link active text-white"
@@ -96,29 +96,47 @@ const Header = () => {
               </li> */}
             </ul>
 
-           
             <Paper
-      component="form"
-      sx={{ p: '0 3px', display: 'flex', alignItems: 'center', width: 350}}
-    >
-      
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Enter Podcast to Search"
-        inputProps={{ 'aria-label': 'Enter Podcast to Search' }}
-      />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
-      </IconButton>
+              component="form"
+              sx={{
+                p: "0 3px",
+                display: "flex",
+                alignItems: "center",
+                width: 350,
+              }}
+            >
+              {/* <InputBase
+                class="Hotbg"
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Enter Podcast to Search"
+                inputProps={{ "aria-label": "Enter Podcast to Search" }}
+              />
+              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+                <SearchIcon />
+              </IconButton> */}
+              <div class="Hotbg">
+                <input
+                  type="text"
+                  name=""
+                  class="Hotbg-txt"
+                  placeholder="Search >>>"
+                />
+                <a href="#" class="Hotbg-btn">
+                  <i class="fa fa-search"></i>
+                </a>
+              </div>
             </Paper>
-            {
-              !loggedIn ?
-                <li className="nav">
-                  <NavLink className="btn" to="/login">Login Now</NavLink>
-                </li>:
-                <button onClick={logout} className="btn btn-danger">Logout</button>
-            }
-
+            {!loggedIn ? (
+              <li className="nav">
+                <NavLink className="btn" to="/login">
+                  Login Now
+                </NavLink>
+              </li>
+            ) : (
+              <button onClick={logout} className="btn btn-danger">
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </nav>
