@@ -45,7 +45,7 @@ const Signup = () => {
         title: "Success",
         text: "Registered successfully!!",
       });
-      navigate("/listPodcast");
+      navigate("/login");
     } else {
       console.log(response.status);
       console.log("something went wrong");
