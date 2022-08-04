@@ -1,5 +1,5 @@
 import { IconButton, InputBase, Paper } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { AppContext } from "./AppContext";
@@ -13,7 +13,7 @@ const Header = () => {
 
   const [filter, setFilter] = useState("");
 
-  const handleFilter = async (event) => {
+  const handleFilter = async () => {
     const response = await fetch("http://localhost:5000/podcast/getall");
     const data = await response.json();
 
@@ -24,13 +24,17 @@ const Header = () => {
     );
   };
   const [listArray, setListArray] = useState([]);
-  const url = "http://localhost:5000";
   const getDataFromBackend = async () => {
     const response = await fetch("http://localhost:5000/podcast/getall");
     const data = await response.json();
     console.log(data);
     setListArray(data);
   };
+  useEffect(() => {
+    getDataFromBackend();
+  }, []);
+
+
   const logout = () => {
     //1.destroy session value
     sessionStorage.removeItem("user");

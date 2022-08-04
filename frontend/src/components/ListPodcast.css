@@ -22,3 +22,7 @@
   transform: translateY(-20px);
   box-shadow: 1px 5px 5px 3px rgba(0, 0, 0, 0.137);
 }
+.text-center{
+  text-align: center;
+  justify-content: center;
+}

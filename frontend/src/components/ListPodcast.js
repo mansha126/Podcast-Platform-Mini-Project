@@ -15,25 +15,26 @@ const ListPodcast = () => {
     const response = await fetch("http://localhost:5000/podcast/getall");
     const data = await response.json();
 
-    setListArray(
+    setPodcastArray(
       data.filter((value) => {
         return value.title.toLowerCase().includes(filter.toLowerCase());
       })
     );
   };
 
+  //filter category
   const filterCategory = async (category) => {
     const response = await fetch("http://localhost:5000/podcast/getall");
     const data = await response.json();
 
-    setListArray(
+    setPodcastArray(
       data.filter((value) => {
         return value.category.toLowerCase().includes(category.toLowerCase());
       })
     );
   };
 
-  const [listArray, setListArray] = useState([]);
+  const [podcastArray, setPodcastArray] = useState([]);
   const url = "http://localhost:5000";
 
   const getDataFromBackend = async () => {
@@ -46,8 +47,11 @@ const ListPodcast = () => {
     const data = await response.json();
 
     console.log(data);
-    setListArray(data);
+    setPodcastArray(data);
   };
+  useEffect(() => {
+    getDataFromBackend();
+  }, []);
 
   // const deletePodcast = async (id) => {
   //   console.log(id);
@@ -64,11 +68,8 @@ const ListPodcast = () => {
   //   }
   // };
 
-  useEffect(() => {
-    getDataFromBackend();
-  }, []);
   const displayPodcasts = () => {
-    return listArray.map(
+    return podcastArray.map(
       (
         {
           _id,
@@ -85,7 +86,7 @@ const ListPodcast = () => {
         <div className="col-md-6" id="carrd" style={{ marginBottom: "1%" }}>
           <div className="card mb-3" key={_id}>
             <div className="row">
-              <div className="col-md-5">
+              <div className="col-md-6">
                 <img
                   src={url + "/" + thumbnail}
                   alt="thumbnail"
@@ -93,10 +94,10 @@ const ListPodcast = () => {
                   style={{ height: "100%" }}
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-5">
                 <div className="card-body">
                   <h4 className="card-title" style={{ color: "purple" }}>
-                    <h3>Episode {count + 1}:</h3> {title}
+                    Episode {count + 1}:{title}
                   </h4>
                   <hr />
                   <p className="text-muted">{category}</p>
@@ -170,12 +171,53 @@ const ListPodcast = () => {
       </header>
       <div
         className="container"
-        style={{ minHeight: "100vh", paddingTop: "5%" }}
+        style={{ minHeight: "100vh", paddingTop: "3%" }}
       >
-        <button onClick={(e) => filterCategory("education")}>Education</button>
-        <div className="">
-          <div className="row text-center">{displayPodcasts()}</div>
+        <div className="btn-toolbar text-center well">
+          <button
+            className="mb-5 "
+            style={{ marginRight: "3%" }}
+            onClick={(e) => filterCategory("education")}
+          >
+            Education
+          </button>
+          <button
+            className="mb-5 "
+            style={{ marginRight: "3%" }}
+            onClick={(e) => filterCategory("mystery")}
+          >
+            Mystery
+          </button>
+          <button
+            className="mb-5 "
+            style={{ marginRight: "3%" }}
+            onClick={(e) => filterCategory("science")}
+          >
+            Science
+          </button>
+          <button
+            className="mb-5 "
+            style={{ marginRight: "3%" }}
+            onClick={(e) => filterCategory("society")}
+          >
+            Society
+          </button>
+          <button
+            className="mb-5 "
+            style={{ marginRight: "3%" }}
+            onClick={(e) => filterCategory("tech")}
+          >
+            Tech
+          </button>
+          <button
+            className="mb-5 "
+            style={{ marginRight: "3%" }}
+            onClick={(e) => filterCategory("business")}
+          >
+            Business
+          </button>
         </div>
+        <div className="row ">{displayPodcasts()}</div>
       </div>
     </div>
   );

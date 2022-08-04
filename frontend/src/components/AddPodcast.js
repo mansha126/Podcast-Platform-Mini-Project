@@ -11,13 +11,12 @@ import { Formik } from "formik";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import "./AddPodcast.css";
-import CategoryIcon from "@mui/icons-material/Category";
+import * as Yup from "yup";
 
 const AddPodcast = () => {
   const [selFile, setSelFile] = useState("");
   const [selThumbnail, setSelThumbnail] = useState("");
 
-  // const category = { Education, Science, Mystery };
 
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
@@ -31,6 +30,15 @@ const AddPodcast = () => {
     category:"",
     uploadedBy: currentUser.username,
   };
+
+  const podcastCategories = [
+    "Education",
+    "Mystery",
+    "Science",
+    "Society",
+    "Tech",
+    "Business"
+  ];
 
   const podcastSubmit = async (formdata) => {
     formdata.thumbnail = selThumbnail;
@@ -87,6 +95,15 @@ const AddPodcast = () => {
     });
   };
 
+  const validationSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, "Too Short!")
+      .max(200, "Too Long!")
+      .required("Title is Required"),
+    category: Yup.string().required("Category is Required"),
+    description: Yup.string().required("Description is Required"),
+  });
+
   return (
     <div className="addpodcast">
       <div
@@ -103,8 +120,8 @@ const AddPodcast = () => {
             </h1>
             <hr className="mb-3" />
 
-            <Formik initialValues={podcastForm} onSubmit={podcastSubmit}>
-              {({ values, handleChange, handleSubmit }) => (
+            <Formik initialValues={podcastForm} onSubmit={podcastSubmit} validationSchema={validationSchema}>
+              {({ values, handleChange, handleSubmit ,errors}) => (
                 <form onSubmit={handleSubmit}>
                   <TextField
                     label="Title"
@@ -114,6 +131,8 @@ const AddPodcast = () => {
                     id="title"
                     onChange={handleChange}
                     value={values.title}
+                    error={Boolean(errors.title)}
+                        helperText={errors.title}
                   />
                   <TextField
                     label="Description"
@@ -124,6 +143,8 @@ const AddPodcast = () => {
                     onChange={handleChange}
                     value={values.description}
                     type="textarea"
+                    error={Boolean(errors.description)}
+                        helperText={errors.description}
                     multiline
                   />
 
@@ -141,18 +162,16 @@ const AddPodcast = () => {
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
-                      id = "category"
+                      id="category"
+                      name="category"
                       value={values.category}
+                      error={Boolean(errors.category)}
+                      helperText="Category is required"
                       label="Select category"
                       onChange={handleChange}
                     >
-                      <MenuItem value={"Education"}>Education</MenuItem>
-                      <MenuItem value={"Science"}>Science</MenuItem>
-                      <MenuItem value={"Mystery"}>Mystery</MenuItem>
-                      <MenuItem value={"Tech"}>Tech</MenuItem>
-                      <MenuItem value={"Society"}>Society</MenuItem>
-                      <MenuItem value={"Entertainment"}>Entertainment</MenuItem>
-                      <MenuItem value={"Business"}>Business</MenuItem>
+                      {podcastCategories.map((category) => (<MenuItem value={category} >{category}</MenuItem>))}
+                      
                     </Select>
                   </FormControl>
 
