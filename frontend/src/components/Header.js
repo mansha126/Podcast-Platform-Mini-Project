@@ -24,6 +24,7 @@ const Header = () => {
     );
   };
   const [listArray, setListArray] = useState([]);
+  const url = "http://localhost:5000";
   const getDataFromBackend = async () => {
     const response = await fetch("http://localhost:5000/podcast/getall");
     const data = await response.json();
@@ -131,13 +132,8 @@ const Header = () => {
                   Discover
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {/* <li className="nav-item">
-                  <NavLink className="nav-link" to="/assign">
-                    Put link of img
-                  </NavLink>
-                </li> */}
                   <li>
-                    <Link className="dropdown-item" to="/listPodcast/education">
+                    <Link className="dropdown-item" to="/education">
                       Education
                     </Link>
                   </li>
