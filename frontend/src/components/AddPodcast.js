@@ -33,7 +33,7 @@ const AddPodcast = () => {
 
   const podcastCategories = [
     "Education",
-    "Mystery",
+    "Lifestyle",
     "Science",
     "Society",
     "Tech",

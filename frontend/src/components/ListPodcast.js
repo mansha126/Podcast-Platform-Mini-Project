@@ -96,9 +96,9 @@ const ListPodcast = () => {
               </div>
               <div className="col-md-5">
                 <div className="card-body">
-                  <h4 className="card-title" style={{ color: "purple" }}>
-                    Episode {count + 1}:{title}
-                  </h4>
+                  <h3 className="card-title" style={{ color: "purple" }}>
+                    Episode {count + 1}:<h4>{title}</h4>
+                  </h3>
                   <hr />
                   <p className="text-muted">{category}</p>
                   <p className="card-text">{description.substring(0, 75)}</p>
@@ -184,9 +184,9 @@ const ListPodcast = () => {
           <button
             className="mb-5 "
             style={{ marginRight: "3%" }}
-            onClick={(e) => filterCategory("mystery")}
+            onClick={(e) => filterCategory("lifestyle")}
           >
-            Mystery
+            Lifestyle
           </button>
           <button
             className="mb-5 "
