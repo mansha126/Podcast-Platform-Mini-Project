@@ -6,6 +6,7 @@ const schema = new Schema({
   file: String,
   uploadedBy: String,
   category: String,
+  createdAt: { type: Date, default: new Date() },
 });
 
 module.exports = model("podcastcollection", schema);

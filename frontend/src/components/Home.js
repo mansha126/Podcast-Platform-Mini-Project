@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+// import '../../App.css';
+import Cards from './Cards';
+import HeroSection from './HeroSection';
 
-const Home = () => {
+
+function Home() {
   return (
-    <div className="container" style={{minHeight:'100vh'}}>Home</div>
-  )
+    <>
+      <HeroSection />
+      <Cards />
+    </>
+  );
 }
 
 export default Home;

@@ -66,6 +66,7 @@ const ViewPodcast = () => {
                   <Link to="/listPodcast" className="btn btn-primary">
                     Back
                   </Link>
+                  
                 </div>
               </div>
             </div>
@@ -79,7 +80,7 @@ const ViewPodcast = () => {
     <div id="view">
       <header class="bg-secondary text-white text-center" id="headd">
         <div class="container">
-          <h1 style={{ fontFamily: "Cursive", marginBottom: "2%" }}>
+          <h1 style={{ marginBottom: "2%" }}>
             View Podcast
           </h1>
 

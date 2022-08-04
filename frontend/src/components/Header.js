@@ -1,15 +1,36 @@
 import { IconButton, InputBase, Paper } from "@mui/material";
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { AppContext } from "./AppContext";
 import { useContext } from "react";
+import "./Header.css";
 
 const Header = () => {
   const { loggedIn, setLoggedIn } = useContext(AppContext);
 
   const navigate = useNavigate();
 
+  const [filter, setFilter] = useState("");
+
+  const handleFilter = async (event) => {
+    const response = await fetch("http://localhost:5000/podcast/getall");
+    const data = await response.json();
+
+    setListArray(
+      data.filter((value) => {
+        return value.title.toLowerCase().includes(filter.toLowerCase());
+      })
+    );
+  };
+  const [listArray, setListArray] = useState([]);
+  const url = "http://localhost:5000";
+  const getDataFromBackend = async () => {
+    const response = await fetch("http://localhost:5000/podcast/getall");
+    const data = await response.json();
+    console.log(data);
+    setListArray(data);
+  };
   const logout = () => {
     //1.destroy session value
     sessionStorage.removeItem("user");
@@ -62,7 +83,7 @@ const Header = () => {
             >
               <li className="nav-item ">
                 <NavLink
-                  className="nav-link active text-white"
+                  className="nav-link  text-white"
                   aria-current="page"
                   to="/"
                 >
@@ -94,6 +115,54 @@ const Header = () => {
                   ViewPodcast
                 </NavLink>
               </li> */}
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle text-white"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Discover
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {/* <li className="nav-item">
+                  <NavLink className="nav-link" to="/assign">
+                    Put link of img
+                  </NavLink>
+                </li> */}
+                  <li>
+                    <Link className="dropdown-item" to="/listPodcast/education">
+                      Education
+                    </Link>
+                  </li>
+
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Mystery
+                    </a>
+                  </li>
+
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Science
+                    </a>
+                  </li><li>
+                    <a className="dropdown-item" href="#">
+                      Society
+                    </a>
+                  </li><li>
+                    <a className="dropdown-item" href="#">
+                      Tech
+                    </a>
+                  </li><li>
+                    <a className="dropdown-item" href="#">
+                      Business
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
 
             <Paper
@@ -105,35 +174,35 @@ const Header = () => {
                 width: 350,
               }}
             >
-              {/* <InputBase
-                class="Hotbg"
+              <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Enter Podcast to Search"
+                onChange={(e) => setFilter(e.target.value)}
                 inputProps={{ "aria-label": "Enter Podcast to Search" }}
               />
-              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+              <IconButton
+                type="button"
+                sx={{ p: "10px" }}
+                aria-label="search"
+                onClick={handleFilter}
+              >
                 <SearchIcon />
-              </IconButton> */}
-              <div class="Hotbg">
-                <input
-                  type="text"
-                  name=""
-                  class="Hotbg-txt"
-                  placeholder="Search >>>"
-                />
-                <a href="#" class="Hotbg-btn">
-                  <i class="fa fa-search"></i>
-                </a>
-              </div>
+              </IconButton>
+              {/* <div class="Hotbg">
+            <input type="text" name="" class="Hotbg-txt" placeholder="Enter Podcast to search"/>
+            <a href="#" class="Hotbg-btn">
+                <i class="fa fa-search"></i>
+            </a>
+        </div> */}
             </Paper>
             {!loggedIn ? (
               <li className="nav">
-                <NavLink className="btn" to="/login">
+                <NavLink className="btnx btn-primary" to="/login">
                   Login Now
                 </NavLink>
               </li>
             ) : (
-              <button onClick={logout} className="btn btn-danger">
+              <button onClick={logout} className="btnx btn-danger">
                 Logout
               </button>
             )}

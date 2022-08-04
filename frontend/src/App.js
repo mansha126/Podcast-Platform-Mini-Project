@@ -39,6 +39,7 @@ function App() {
           path="addPodcast"
         />
         <Route element={<ListPodcast></ListPodcast>} path="listPodcast" />
+        <Route element={<ListPodcast></ListPodcast>} path="listPodcast/:category" />
         <Route element={<UpdateUser></UpdateUser>} path="updateUser" />
         <Route element={<ViewPodcast />} path="view/:id" />
         <Route element={<Trial></Trial>} path="trial" />

@@ -233,27 +233,27 @@ const Signup = () => {
 
                         <div className="d-flex justify-content-center">
                           <a
-                            className="btn btn-outline-light btn-floating m-1"
+                            className="btnm btn-outline-light btn-floating m-1"
                             href="#!"
                             role="button"
                           >
-                            <i className="fab fa-facebook-f"></i>
+                            <i className="fab fa-facebook-f" style={{marginLeft:"6px"}}></i>
                           </a>
 
                           <a
-                            className="btn btn-outline-light btn-floating m-1"
+                            className="btnm btn-outline-light btn-floating m-1"
                             href="#!"
                             role="button"
                           >
-                            <i className="fab fa-google"></i>
+                            <i className="fab fa-google"  style={{marginLeft:"6px"}}></i>
                           </a>
 
                           <a
-                            className="btn btn-outline-light btn-floating m-1"
+                            className="btnm btn-outline-light btn-floating m-1"
                             href="#!"
                             role="button"
                           >
-                            <i className="fab fa-linkedin-in"></i>
+                            <i className="fab fa-linkedin-in" style={{marginLeft:"6px"}}></i>
                           </a>
                         </div>
                       </form>

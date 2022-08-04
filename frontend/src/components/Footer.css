@@ -1,10 +1,10 @@
-.btn:hover{
+.btnm:hover{
     color:purple;
     background: white;
     opacity: 0.5;
    
 }
-.btn{
+.btnm{
     cursor: pointer;
     outline: none;
     margin: 12px ;

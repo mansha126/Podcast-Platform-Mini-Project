@@ -1,12 +1,23 @@
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import "./AddPodcast.css";
+import CategoryIcon from "@mui/icons-material/Category";
 
 const AddPodcast = () => {
   const [selFile, setSelFile] = useState("");
   const [selThumbnail, setSelThumbnail] = useState("");
+
+  // const category = { Education, Science, Mystery };
 
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
@@ -17,6 +28,7 @@ const AddPodcast = () => {
     description: "",
     thumbnail: "",
     file: "",
+    category:"",
     uploadedBy: currentUser.username,
   };
 
@@ -79,7 +91,7 @@ const AddPodcast = () => {
     <div className="addpodcast">
       <div
         className="container col-md-5"
-        style={{ minHeight: "100vh", paddingTop: "5%" }}
+        style={{ minHeight: "100vh", paddingTop: "2%" }}
       >
         <div className="card ">
           <div
@@ -120,7 +132,29 @@ const AddPodcast = () => {
                   <hr />
 
                   <label>Upload File</label>
-                  <input onChange={uploadFile} type="file" className="mb-3" />
+                  <input onChange={uploadFile} type="file" />
+                  <hr />
+
+                  <FormControl fullWidth color="secondary" className="mb-4">
+                    <InputLabel id="demo-simple-select-label">
+                      Select category
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id = "category"
+                      value={values.category}
+                      label="Select category"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={"Education"}>Education</MenuItem>
+                      <MenuItem value={"Science"}>Science</MenuItem>
+                      <MenuItem value={"Mystery"}>Mystery</MenuItem>
+                      <MenuItem value={"Tech"}>Tech</MenuItem>
+                      <MenuItem value={"Society"}>Society</MenuItem>
+                      <MenuItem value={"Entertainment"}>Entertainment</MenuItem>
+                      <MenuItem value={"Business"}>Business</MenuItem>
+                    </Select>
+                  </FormControl>
 
                   <Button
                     type="submit"
