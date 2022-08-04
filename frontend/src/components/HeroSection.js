@@ -5,7 +5,7 @@ import './HeroSection.css';
 function HeroSection() {
   return (
     <div className='hero-container'>
-      <video src='./video-1.mp4' autoPlay loop muted />
+      <video src="video-1.mp4" autoPlay loop muted />
       <h1>The Best Place For Podcast</h1>
           {/* <p>Rebuilt for simplicity and speed, so you can spend more time discovering and listening to great podcasts.</p> */}
           <p>Make Great Podcasts and Stay Tuned</p>
