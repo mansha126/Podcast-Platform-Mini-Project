@@ -175,42 +175,42 @@ const ListPodcast = () => {
       >
         <div className="btn-toolbar text-center well">
           <button
-            className="mb-5 "
+            className="btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("education")}
           >
             Education
           </button>
           <button
-            className="mb-5 "
+            className="btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("lifestyle")}
           >
             Lifestyle
           </button>
           <button
-            className="mb-5 "
+            className="btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("science")}
           >
             Science
           </button>
           <button
-            className="mb-5 "
+            className="btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("society")}
           >
             Society
           </button>
           <button
-            className="mb-5 "
+            className="btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("tech")}
           >
             Tech
           </button>
           <button
-            className="mb-5 "
+            className="btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("business")}
           >
