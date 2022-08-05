@@ -177,6 +177,7 @@ const Header = () => {
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Enter Podcast to Search"
+                type="text"
                 onChange={(e) => setFilter(e.target.value)}
                 inputProps={{ "aria-label": "Enter Podcast to Search" }}
               />
@@ -202,9 +203,9 @@ const Header = () => {
                 </NavLink>
               </li>
             ) : (
-              <button onClick={logout} className="btnx btn-danger">
+              <NavLink onClick={logout} className="btnx btn-danger"to="/">
                 Logout
-              </button>
+              </NavLink>
             )}
           </div>
         </div>

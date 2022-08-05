@@ -21,6 +21,7 @@ const ListPodcast = () => {
       })
     );
   };
+  const [active, setActive] = useState(false);
 
   //filter category
   const filterCategory = async (category) => {
@@ -101,7 +102,9 @@ const ListPodcast = () => {
                   </h3>
                   <hr />
                   <p className="text-muted">{category}</p>
-                  <p className="card-text">{description.substring(0, 71).concat("...")}</p>
+                  <p className="card-text">
+                    {description.substring(0, 71).concat("...")}
+                  </p>
                   {/* <p className="card-text" style={{ color: "purple" }}>
                     File:{file}
                   </p> */}
