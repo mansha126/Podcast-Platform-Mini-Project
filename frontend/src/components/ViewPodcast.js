@@ -95,7 +95,7 @@ const ViewPodcast = () => {
                     controls
                   />
                 </div>
-                <Link to="/listPodcast" className="btn btn-primary">
+                <Link to="/listPodcast" className="btn btn-primary mb-3">
                   Back
                 </Link>
               </div>

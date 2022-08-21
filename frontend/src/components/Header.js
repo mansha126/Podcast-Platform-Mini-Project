@@ -120,7 +120,7 @@ const Header = () => {
                   ViewPodcast
                 </NavLink>
               </li> */}
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle text-white"
                   href="#"
@@ -162,7 +162,7 @@ const Header = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
             </ul>
 
             <Paper

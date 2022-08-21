@@ -118,6 +118,7 @@ router.post("/authenticate", (req, res) => {
 //resetpassword
 // 1. check email is correct or not
 router.post('/email-send', (req, res) => {
+  console.log(req.body.email)
  let data= Model.findOne({ email: req.body.email });
   console.log(data);
   const responseType = {};
@@ -167,31 +168,31 @@ router.post('/change-password', (req, res) => {
 })
 
 
-const mailer = (email, otp) => {
-  var nodemailer = require('nodemailer');
-  var transporter = nodemailer.createTransport({
-    service: "gmail",
-    port: 587,
-    secure: false,
-    auth: {
-      user: 'mansha@gmail.com',
-      pass: "1234"
-    }
-  });
-  var mailOptions = {
-    from: "mansha@gmail.com",
-    to: "ram@gmail.com",
-    subject: "Sending Email",
-    text: "Thank you!"
-  };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent:'+info.response)
-    }
-  })
-}
+// const mailer = (email, otp) => {
+//   var nodemailer = require('nodemailer');
+//   var transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     port: 587,
+//     secure: false,
+//     auth: {
+//       user: 'mansha@gmail.com',
+//       pass: "1234"
+//     }
+//   });
+//   var mailOptions = {
+//     from: "mansha@gmail.com",
+//     to: "ram@gmail.com",
+//     subject: "Sending Email",
+//     text: "Thank you!"
+//   };
+//   transporter.sendMail(mailOptions, function (error, info) {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log('Email sent:'+info.response)
+//     }
+//   })
+// }
 
 
 

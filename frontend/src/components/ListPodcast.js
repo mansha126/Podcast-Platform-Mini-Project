@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./ListPodcast.css";
 import SearchIcon from "@mui/icons-material/Search";
+import LastSeen from "../LastSeen";
 
 const ListPodcast = () => {
   //search filter
@@ -84,19 +85,22 @@ const ListPodcast = () => {
         },
         count
       ) => (
-        <div className="col-md-6" id="carrd" style={{ marginBottom: "1%" }}>
-          <div className="card mb-3" key={_id}>
-            <div className="row">
-              <div className="col-md-6">
-                <img
-                  src={url + "/" + thumbnail}
-                  alt="thumbnail"
-                  className="img-fluid rounded-start"
-                  style={{ height: "100%" }}
-                />
-              </div>
-              <div className="col-md-5">
-                <div className="card-body">
+        <div className="col-md-6"  style={{ marginBottom: "1%" }}>
+          <div className="card mb-3" id="carrd"key={_id}>
+            <div className="card-body"
+              style={{ background: "#dad9e3" }}
+            >
+              <div className="row">
+                <div className="col-md-6">
+                  <img
+                    src={url + "/" + thumbnail}
+                    alt="thumbnail"
+                    className="img-fluid rounded-start"
+                    style={{ height: "100%" }}
+                  />
+                </div>
+                <div className="col-md-5">
+                  {/* <div className="card-body"> */}
                   <h3 className="card-title" style={{ color: "purple" }}>
                     Episode {count + 1}:<h4>{title}</h4>
                   </h3>
@@ -114,18 +118,22 @@ const ListPodcast = () => {
                     </small>
                   </p>{" "}
                   <p className="card-text">
-                    <small className="text-muted">{createdAt}</small>
+                    <small className="text-muted">
+                      <LastSeen date={createdAt} />
+                    </small>
                   </p>
-                  <Link to={"/view/" + _id} className="btnm btn-secondary">
+                  <Link to={"/view/" + _id} className="btn btn-primary">
                     Play Now
                     <i
                       class="fa-solid fa-play"
                       style={{ paddingLeft: "9px" }}
                     ></i>
                   </Link>
+                  
                 </div>
               </div>
             </div>
+            {/* </div> */}
           </div>
         </div>
       )
@@ -178,42 +186,50 @@ const ListPodcast = () => {
       >
         <div className="btn-toolbar text-center well">
           <button
-            className="btn-light mb-5 "
+            className="btf btn-light mb-5 "
+            style={{ marginRight: "3%" }}
+            onClick={getDataFromBackend}
+          >
+            All
+          </button>
+          {/* <Link to='/listPodcast' className="btf btn-light mb-5 "  style={{ marginRight: "3%" }}>All</Link> */}
+          <button
+            className="btf btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("education")}
           >
             Education
           </button>
           <button
-            className="btn-light mb-5 "
+            className="btf btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("lifestyle")}
           >
             Lifestyle
           </button>
           <button
-            className="btn-light mb-5 "
+            className="btf btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("science")}
           >
             Science
           </button>
           <button
-            className="btn-light mb-5 "
+            className="btf btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("society")}
           >
             Society
           </button>
           <button
-            className="btn-light mb-5 "
+            className="btf btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("tech")}
           >
             Tech
           </button>
           <button
-            className="btn-light mb-5 "
+            className="btf btn-light mb-5 "
             style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("business")}
           >

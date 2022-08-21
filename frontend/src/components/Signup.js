@@ -65,12 +65,12 @@ const Signup = () => {
 
     email: Yup.string().email("Invalid email").required("Email is Required"),
     password: Yup.string()
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
       )
       .required("Password is Required"),
-      confirmPassword: Yup.string()
+    confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Password Confirmation is Required"),
   });
@@ -91,7 +91,7 @@ const Signup = () => {
                 className="img-fluid"
                 src="https://purple.ai/wp-content/uploads/2020/04/guest-wifi-featured.png"
                 alt=""
-                style={{ minHeight: "20rem", height: "100%"}}
+                style={{ minHeight: "20rem", height: "100%" }}
               />
               {/* <Avatar
         sx={{ bgcolor: deepOrange[500] }}
@@ -104,7 +104,8 @@ const Signup = () => {
                 <div
                   className="card-body"
                   style={{
-                    background: "linear-gradient(to right,#ffffff,#e5d3f9)",borderRadius:"7px"
+                    background: "linear-gradient(to right,#ffffff,#e5d3f9)",
+                    borderRadius: "7px",
                   }}
                 >
                   <h1 style={{ textAlign: "center", color: "purple" }}>
@@ -192,27 +193,31 @@ const Signup = () => {
                           error={Boolean(errors.password && touched.password)}
                         />
                         <TextField
-                      className="w-100 mb-3"
-                      placeholder="Re-enterPassword"
-                      label="Confirm Password"
+                          className="w-100 mb-3"
+                          placeholder="Re-enterPassword"
+                          label="Confirm Password"
                           type="password"
                           color="secondary"
-                      variant="standard"
-                      id="confirmPassword"
-                      onChange={handleChange}
-                      value={values.confirmPassword}
-                      error={errors.confirmPassword}
-                      helperText={Boolean(errors.confirmPassword)}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <LockOpenIcon
-                              sx={{ color: "active.active", mr: 1, my: 0.5 }}
-                            />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                          variant="standard"
+                          id="confirmPassword"
+                          onChange={handleChange}
+                          value={values.confirmPassword}
+                          error={errors.confirmPassword}
+                          helperText={Boolean(errors.confirmPassword)}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <LockOpenIcon
+                                  sx={{
+                                    color: "active.active",
+                                    mr: 1,
+                                    my: 0.5,
+                                  }}
+                                />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
                         <Button
                           type="submit"
                           variant="contained"
@@ -237,7 +242,10 @@ const Signup = () => {
                             href="#!"
                             role="button"
                           >
-                            <i className="fab fa-facebook-f" style={{marginLeft:"6px"}}></i>
+                            <i
+                              className="fab fa-facebook-f"
+                              style={{ marginLeft: "6px" }}
+                            ></i>
                           </a>
 
                           <a
@@ -245,7 +253,10 @@ const Signup = () => {
                             href="#!"
                             role="button"
                           >
-                            <i className="fab fa-google"  style={{marginLeft:"6px"}}></i>
+                            <i
+                              className="fab fa-google"
+                              style={{ marginLeft: "6px" }}
+                            ></i>
                           </a>
 
                           <a
@@ -253,7 +264,10 @@ const Signup = () => {
                             href="#!"
                             role="button"
                           >
-                            <i className="fab fa-linkedin-in" style={{marginLeft:"6px"}}></i>
+                            <i
+                              className="fab fa-linkedin-in"
+                              style={{ marginLeft: "6px" }}
+                            ></i>
                           </a>
                         </div>
                       </form>

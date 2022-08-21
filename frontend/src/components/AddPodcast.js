@@ -17,7 +17,6 @@ const AddPodcast = () => {
   const [selFile, setSelFile] = useState("");
   const [selThumbnail, setSelThumbnail] = useState("");
 
-
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
@@ -27,7 +26,7 @@ const AddPodcast = () => {
     description: "",
     thumbnail: "",
     file: "",
-    category:"",
+    category: "",
     uploadedBy: currentUser.username,
   };
 
@@ -37,7 +36,7 @@ const AddPodcast = () => {
     "Science",
     "Society",
     "Tech",
-    "Business"
+    "Business",
   ];
 
   const podcastSubmit = async (formdata) => {
@@ -100,6 +99,8 @@ const AddPodcast = () => {
       .min(2, "Too Short!")
       .max(200, "Too Long!")
       .required("Title is Required"),
+    file: Yup.string().required("File is required"),
+    thumbnail: Yup.string().required("Thumbnail is required"),
     category: Yup.string().required("Category is Required"),
     description: Yup.string().required("Description is Required"),
   });
@@ -120,8 +121,12 @@ const AddPodcast = () => {
             </h1>
             <hr className="mb-3" />
 
-            <Formik initialValues={podcastForm} onSubmit={podcastSubmit} validationSchema={validationSchema}>
-              {({ values, handleChange, handleSubmit ,errors}) => (
+            <Formik
+              initialValues={podcastForm}
+              onSubmit={podcastSubmit}
+              validationSchema={validationSchema}
+            >
+              {({ values, handleChange, handleSubmit, errors }) => (
                 <form onSubmit={handleSubmit}>
                   <TextField
                     label="Title"
@@ -132,7 +137,7 @@ const AddPodcast = () => {
                     onChange={handleChange}
                     value={values.title}
                     error={Boolean(errors.title)}
-                        helperText={errors.title}
+                    helperText={errors.title}
                   />
                   <TextField
                     label="Description"
@@ -144,24 +149,35 @@ const AddPodcast = () => {
                     value={values.description}
                     type="textarea"
                     error={Boolean(errors.description)}
-                        helperText={errors.description}
+                    helperText={errors.description}
                     multiline
                   />
 
-                  <label>Upload Thumb</label>
-                  <input onChange={uploadThumbnail} type="file" />
-                  <hr />
+                  <TextField
+                    label="Upload Thumb"
+                    className="w-100 mb-4"
+                    color="secondary"
+                    onChange={uploadThumbnail}
+                    type="file"
+                    error={Boolean(errors.thumbnail)}
+                    helperText={errors.thumbnail}
+                  />
 
-                  <label>Upload File</label>
-                  <input onChange={uploadFile} type="file" />
-                  <hr />
+                  <TextField
+                    label="Upload File"
+                    className="w-100 mb-4"
+                    color="secondary"
+                    onChange={uploadFile}
+                    type="file"
+                    error={Boolean(errors.file)}
+                    helperText={errors.file}
+                  />
 
                   <FormControl fullWidth color="secondary" className="mb-4">
                     <InputLabel id="demo-simple-select-label">
                       Select category
                     </InputLabel>
                     <Select
-                      labelId="demo-simple-select-label"
                       id="category"
                       name="category"
                       value={values.category}
@@ -170,8 +186,9 @@ const AddPodcast = () => {
                       label="Select category"
                       onChange={handleChange}
                     >
-                      {podcastCategories.map((category) => (<MenuItem value={category} >{category}</MenuItem>))}
-                      
+                      {podcastCategories.map((category) => (
+                        <MenuItem value={category}>{category}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
 
