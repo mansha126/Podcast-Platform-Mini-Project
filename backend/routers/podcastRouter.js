@@ -9,10 +9,10 @@ router.post('/add', (req, res) => {
         .then((result) => {
             console.log(result);
         console.log("data saved")
-            res.json(result);
+            res.status(200).json(result);
     }).catch((err) => {
         console.log(err);
-        res.json(err);
+        res.status(400).json(err);
     });
 })
    

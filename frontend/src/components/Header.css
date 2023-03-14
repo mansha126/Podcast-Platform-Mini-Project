@@ -5,7 +5,10 @@
     padding: 7px 21px;
     border-radius: 10px;
 }
-.navbar-nav li:hover{
+.active,.nav-link:hover{
 background-color: #9c90ae97;
 border-radius: 7px;
+}
+.nav-item{
+    padding-left: 6px;
 }

@@ -1,16 +1,26 @@
-import { IconButton, InputBase, Paper } from "@mui/material";
+import { IconButton, InputBase, Paper, Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./ListPodcast.css";
 import SearchIcon from "@mui/icons-material/Search";
 import LastSeen from "../LastSeen";
+import Pagination from "./Pagination";
 
 const ListPodcast = () => {
+  const [loading, setLoading] = useState(true);
+
   //search filter
   const [filter, setFilter] = useState("");
 
   const { category } = useParams();
+
+  const [showPerPage, setShowPerPage] = useState(6);
+  const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
+  const onPaginationChange = (start, end) => {
+    console.log(start, end);
+    setPagination({ start: start, end: end });
+  };
 
   const handleFilter = async () => {
     const response = await fetch("http://localhost:5000/podcast/getall");
@@ -50,28 +60,30 @@ const ListPodcast = () => {
 
     console.log(data);
     setPodcastArray(data);
+    setLoading(false);
   };
   useEffect(() => {
     getDataFromBackend();
   }, []);
 
-  // const deletePodcast = async (id) => {
-  //   console.log(id);
-  //   const response = await fetch("http://localhost:5000/podcast/delete/" + id, {
-  //     method: "DELETE",
-  //   });
-  //   if (response.status === 200) {
-  //     Swal.fire({
-  //       icon: "success",
-  //       title: "Success",
-  //       text: "Podcast Deleted successfully",
-  //     });
-  //     getDataFromBackend();
-  //   }
-  // };
+  const deletePodcast = async (id) => {
+    console.log(id);
+    const response = await fetch("http://localhost:5000/podcast/delete/" + id, {
+      method: "DELETE",
+    });
+    if (response.status === 200) {
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Podcast Deleted successfully",
+      });
+      getDataFromBackend();
+    }
+  };
 
   const displayPodcasts = () => {
-    return podcastArray.map(
+    if (!loading) {
+    return podcastArray.slice(pagination.start, pagination.end).map(
       (
         {
           _id,
@@ -129,6 +141,11 @@ const ListPodcast = () => {
                       style={{ paddingLeft: "9px" }}
                     ></i>
                   </Link>
+                  <button className="btn btn-danger" onClick={(e) => deletePodcast(_id)}>
+               
+                        <i class="fas fa-trash"></i>
+                    </button>
+
                   
                 </div>
               </div>
@@ -138,6 +155,7 @@ const ListPodcast = () => {
         </div>
       )
     );
+  }else{<h1>Loading...</h1>}
   };
   return (
     <div id="list">
@@ -187,7 +205,6 @@ const ListPodcast = () => {
         <div className="btn-toolbar text-center well">
           <button
             className="btf btn-light mb-5 "
-            style={{ marginRight: "3%" }}
             onClick={getDataFromBackend}
           >
             All
@@ -195,48 +212,48 @@ const ListPodcast = () => {
           {/* <Link to='/listPodcast' className="btf btn-light mb-5 "  style={{ marginRight: "3%" }}>All</Link> */}
           <button
             className="btf btn-light mb-5 "
-            style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("education")}
           >
             Education
           </button>
           <button
             className="btf btn-light mb-5 "
-            style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("lifestyle")}
           >
             Lifestyle
           </button>
           <button
             className="btf btn-light mb-5 "
-            style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("science")}
           >
             Science
           </button>
           <button
             className="btf btn-light mb-5 "
-            style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("society")}
           >
             Society
           </button>
           <button
             className="btf btn-light mb-5 "
-            style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("tech")}
           >
             Tech
           </button>
           <button
             className="btf btn-light mb-5 "
-            style={{ marginRight: "3%" }}
             onClick={(e) => filterCategory("business")}
           >
             Business
           </button>
         </div>
-        <div className="row ">{displayPodcasts()}</div>
+        <div className="row ">{displayPodcasts()}
+        <Pagination
+                  showPerPage={showPerPage}
+                  onPaginationChange={onPaginationChange}
+                  total={podcastArray.length}
+                />
+          </div>
       </div>
     </div>
   );

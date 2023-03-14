@@ -15,10 +15,6 @@ app.use('/user', userRouter)
 app.use('/podcast', podcastRouter)
 app.use('/util', util)
 // app.use('/otp', otpRouter)
-
-
-app.use(express.static('./static/uploads'))
-
 app.use(express.static('./static/uploads'));
 
 app.get('/', (req, res) => {

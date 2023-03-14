@@ -26,3 +26,14 @@
   text-align: center;
   justify-content: center;
 }
+.btf{
+margin-right: 3%;
+font-size: large;
+font-weight: 500;
+}
+.btf:hover{
+  background-color:#d8d1e297;
+}
+.btf:focus{
+  background-color:#aea9b597;
+}

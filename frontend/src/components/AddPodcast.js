@@ -12,11 +12,12 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import "./AddPodcast.css";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const AddPodcast = () => {
   const [selFile, setSelFile] = useState("");
   const [selThumbnail, setSelThumbnail] = useState("");
-
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
@@ -39,8 +40,9 @@ const AddPodcast = () => {
     "Business",
   ];
 
-  const podcastSubmit = async (formdata) => {
+  const podcastSubmit = async (formdata, { setSubmitting }) => {
     formdata.thumbnail = selThumbnail;
+    setSubmitting(true);
     formdata.file = selFile;
     console.log(formdata);
     const response = await fetch("http://localhost:5000/podcast/add", {
@@ -49,16 +51,22 @@ const AddPodcast = () => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.status === 200) {
+      console.log(response.status);
+      console.log("success");
       Swal.fire({
         icon: "success",
         title: "Success",
         text: "Submit successfully!!✌🎉",
       });
+      navigate("/listPodcast");
+      setSubmitting(false);
     } else if (response.status === 400) {
-      Swal.fire({
+      console.log(response.status);
+      console.log("something went wrong");
+      Swal.error({
         icon: "error",
         title: "Error",
-        text: "Invalid Credentials",
+        text: "!! something went wrong!!",
       });
     }
   };
@@ -68,6 +76,7 @@ const AddPodcast = () => {
     setSelFile(file.name);
     const fd = new FormData();
     fd.append("myfile", file);
+    console.log(fd);
     fetch("http://localhost:5000/util/uploadfile", {
       method: "POST",
       body: fd,
@@ -99,8 +108,8 @@ const AddPodcast = () => {
       .min(2, "Too Short!")
       .max(200, "Too Long!")
       .required("Title is Required"),
-    file: Yup.string().required("File is required"),
-    thumbnail: Yup.string().required("Thumbnail is required"),
+    // file: Yup.string().required("File is required"),
+    // thumbnail: Yup.string().required("Thumbnail is required"),
     category: Yup.string().required("Category is Required"),
     description: Yup.string().required("Description is Required"),
   });
@@ -126,7 +135,13 @@ const AddPodcast = () => {
               onSubmit={podcastSubmit}
               validationSchema={validationSchema}
             >
-              {({ values, handleChange, handleSubmit, errors }) => (
+              {({
+                values,
+                handleChange,
+                handleSubmit,
+                errors,
+                isSubmitting,
+              }) => (
                 <form onSubmit={handleSubmit}>
                   <TextField
                     label="Title"
@@ -153,14 +168,37 @@ const AddPodcast = () => {
                     multiline
                   />
 
+                  {/* <label htmlFor="24" className="btn btn-dark">
+                    upload Thumbnail
+                  </label>
+                  <input
+                    id="24"
+                    hidden
+                    label="Upload Thumb"
+                    className="w-100 mb-4"
+                    color="secondary"
+                    onChange={uploadThumbnail}
+                    type="file"
+                  />
+                  <hr />
+                  <label htmlFor="23" className="btn btn-dark">
+                    upload file
+                  </label>
+                  <input
+                    hidden
+                    id="23"
+                    label="Upload File"
+                    className="w-100"
+                    onChange={uploadFile}
+                    type="file"
+                  /> */}
                   <TextField
                     label="Upload Thumb"
                     className="w-100 mb-4"
                     color="secondary"
                     onChange={uploadThumbnail}
                     type="file"
-                    error={Boolean(errors.thumbnail)}
-                    helperText={errors.thumbnail}
+                     required
                   />
 
                   <TextField
@@ -169,8 +207,8 @@ const AddPodcast = () => {
                     color="secondary"
                     onChange={uploadFile}
                     type="file"
-                    error={Boolean(errors.file)}
-                    helperText={errors.file}
+                    required
+    
                   />
 
                   <FormControl fullWidth color="secondary" className="mb-4">
@@ -182,7 +220,7 @@ const AddPodcast = () => {
                       name="category"
                       value={values.category}
                       error={Boolean(errors.category)}
-                      helperText="Category is required"
+                      helperText={errors.category}
                       label="Select category"
                       onChange={handleChange}
                     >
@@ -193,6 +231,7 @@ const AddPodcast = () => {
                   </FormControl>
 
                   <Button
+                    disabled={isSubmitting}
                     type="submit"
                     variant="contained"
                     fullWidth

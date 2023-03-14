@@ -18,6 +18,7 @@ import {
   AccountCircle,
 } from "@mui/icons-material";
 import "./Signup.css";
+import ParticlesBg from "particles-bg";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -77,6 +78,7 @@ const Signup = () => {
 
   return (
     <div className="signup">
+      {/* <ParticlesBg color="" type="circle" bg={true} /> */}
       <div
         className="container col-8"
         style={{ minHeight: "100vh", paddingTop: "3%" }}
